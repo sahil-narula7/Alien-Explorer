@@ -1,0 +1,508 @@
+/* ── Google Fonts ─────────────────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Exo+2:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap');
+
+/* ── CSS Reset + Box Sizing ──────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+img,
+video,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* ── CSS Variables ───────────────────────────────────────────────────────── */
+:root {
+  --space-dark: #0a0a1e;
+  --space-mid: #0d1b2a;
+  --elm-cyan: #00ffcc;
+  --elm-blue: #4488ff;
+  --gold: #ffd700;
+  --danger: #ff3333;
+  --success: #00ff88;
+  --text-primary: #e0e8ff;
+  --text-dim: #8899bb;
+
+  /* Derived */
+  --cyan-glow: 0 0 10px var(--elm-cyan), 0 0 20px var(--elm-cyan);
+  --blue-glow: 0 0 10px var(--elm-blue), 0 0 20px var(--elm-blue);
+  --gold-glow: 0 0 10px var(--gold), 0 0 20px var(--gold);
+}
+
+/* ── Body ────────────────────────────────────────────────────────────────── */
+body {
+  background: #000010;
+  font-family: 'Exo 2', sans-serif;
+  color: var(--text-primary);
+  overflow: hidden;
+  min-height: 100vh;
+  min-width: 100vw;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* ── Scene Layout ────────────────────────────────────────────────────────── */
+.scene {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── Primary Button ──────────────────────────────────────────────────────── */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 2px solid var(--elm-cyan);
+  background: transparent;
+  color: var(--elm-cyan);
+  padding: 16px 40px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.9rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    transparent 0%,
+    rgba(0, 255, 204, 0.06) 50%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  transition: background-position 0.4s;
+}
+
+.btn-primary:hover {
+  background: rgba(0, 255, 204, 0.1);
+  box-shadow: 0 0 20px var(--elm-cyan), inset 0 0 10px rgba(0, 255, 204, 0.05);
+  transform: scale(1.05);
+}
+
+.btn-primary:hover::before {
+  background-position: -100% 0;
+}
+
+.btn-primary:active {
+  transform: scale(0.98);
+}
+
+.btn-primary:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* ── Secondary / Ghost Buttons ───────────────────────────────────────────── */
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1px solid rgba(68, 136, 255, 0.5);
+  background: transparent;
+  color: var(--elm-blue);
+  padding: 12px 28px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 4px;
+}
+
+.btn-secondary:hover {
+  background: rgba(68, 136, 255, 0.12);
+  box-shadow: 0 0 14px var(--elm-blue);
+  transform: scale(1.03);
+}
+
+.btn-danger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1px solid rgba(255, 51, 51, 0.5);
+  background: transparent;
+  color: var(--danger);
+  padding: 12px 28px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 4px;
+}
+
+.btn-danger:hover {
+  background: rgba(255, 51, 51, 0.12);
+  box-shadow: 0 0 14px var(--danger);
+  transform: scale(1.03);
+}
+
+/* ── Glow Text ───────────────────────────────────────────────────────────── */
+.glow-text {
+  text-shadow:
+    0 0 8px var(--elm-cyan),
+    0 0 16px var(--elm-cyan),
+    0 0 32px rgba(0, 255, 204, 0.4);
+}
+
+.glow-text-gold {
+  text-shadow:
+    0 0 8px var(--gold),
+    0 0 16px var(--gold),
+    0 0 32px rgba(255, 215, 0, 0.4);
+}
+
+.glow-text-blue {
+  text-shadow:
+    0 0 8px var(--elm-blue),
+    0 0 16px var(--elm-blue),
+    0 0 32px rgba(68, 136, 255, 0.4);
+}
+
+/* ── Card ────────────────────────────────────────────────────────────────── */
+.card {
+  background: rgba(10, 10, 30, 0.8);
+  border: 1px solid rgba(0, 255, 204, 0.25);
+  border-radius: 12px;
+  padding: 24px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow:
+    0 0 24px rgba(0, 255, 204, 0.08),
+    inset 0 0 40px rgba(0, 0, 20, 0.5);
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(0, 255, 204, 0.5),
+    transparent
+  );
+}
+
+.card-blue {
+  border-color: rgba(68, 136, 255, 0.3);
+  box-shadow:
+    0 0 24px rgba(68, 136, 255, 0.1),
+    inset 0 0 40px rgba(0, 0, 20, 0.5);
+}
+
+.card-gold {
+  border-color: rgba(255, 215, 0, 0.3);
+  box-shadow:
+    0 0 24px rgba(255, 215, 0, 0.08),
+    inset 0 0 40px rgba(0, 0, 20, 0.5);
+}
+
+/* ── Warp Star ───────────────────────────────────────────────────────────── */
+.warp-star {
+  position: absolute;
+  width: 2px;
+  height: 80px;
+  background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.8), transparent);
+  animation: warp 1.2s linear infinite;
+  transform-origin: center top;
+  border-radius: 1px;
+}
+
+/* ── Keyframe Animations ─────────────────────────────────────────────────── */
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.7;
+    box-shadow: 0 0 8px var(--elm-cyan), 0 0 16px rgba(0, 255, 204, 0.3);
+  }
+  50% {
+    opacity: 1;
+    box-shadow: 0 0 16px var(--elm-cyan), 0 0 32px rgba(0, 255, 204, 0.6), 0 0 48px rgba(0, 255, 204, 0.2);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes scanline {
+  0% {
+    top: -4px;
+  }
+  100% {
+    top: 100%;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+@keyframes warp {
+  0% {
+    transform: translateY(-100px) scaleY(0.2);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(110vh) scaleY(1.4);
+    opacity: 0;
+  }
+}
+
+@keyframes shake {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+  10% {
+    transform: translate(-4px, -2px);
+  }
+  20% {
+    transform: translate(4px, 2px);
+  }
+  30% {
+    transform: translate(-3px, 3px);
+  }
+  40% {
+    transform: translate(3px, -3px);
+  }
+  50% {
+    transform: translate(-5px, 1px);
+  }
+  60% {
+    transform: translate(5px, -1px);
+  }
+  70% {
+    transform: translate(-2px, 4px);
+  }
+  80% {
+    transform: translate(2px, -4px);
+  }
+  90% {
+    transform: translate(-1px, 2px);
+  }
+}
+
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@keyframes type-cursor {
+  0%, 100% { border-right-color: var(--elm-cyan); }
+  50% { border-right-color: transparent; }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── Utility Animation Classes ───────────────────────────────────────────── */
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-shake {
+  animation: shake 0.5s ease-in-out;
+}
+
+.animate-spin-slow {
+  animation: spin-slow 12s linear infinite;
+}
+
+/* ── Scrollbar Styling ───────────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(10, 10, 30, 0.8);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 255, 204, 0.3);
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 255, 204, 0.6);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 255, 204, 0.3) rgba(10, 10, 30, 0.8);
+}
+
+/* ── Text Utilities ──────────────────────────────────────────────────────── */
+.font-orbitron {
+  font-family: 'Orbitron', sans-serif;
+}
+
+.font-exo {
+  font-family: 'Exo 2', sans-serif;
+}
+
+.text-cyan { color: var(--elm-cyan); }
+.text-blue { color: var(--elm-blue); }
+.text-gold { color: var(--gold); }
+.text-danger { color: var(--danger); }
+.text-success { color: var(--success); }
+.text-dim { color: var(--text-dim); }
+.text-primary { color: var(--text-primary); }
+
+/* ── Shimmer / loading skeleton ──────────────────────────────────────────── */
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.03) 25%,
+    rgba(255, 255, 255, 0.08) 50%,
+    rgba(255, 255, 255, 0.03) 75%
+  );
+  background-size: 400% 100%;
+  animation: shimmer 1.8s ease infinite;
+}
+
+/* ── Scanner line overlay (apply to a container) ─────────────────────────── */
+.scanline-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.scanline-container::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(0, 255, 204, 0.25),
+    transparent
+  );
+  animation: scanline 3s linear infinite;
+  pointer-events: none;
+}
+
+/* ── Media Queries ───────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  html {
+    font-size: 14px;
+  }
+
+  .btn-primary {
+    padding: 12px 24px;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+  }
+
+  .card {
+    padding: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  html {
+    font-size: 13px;
+  }
+
+  .btn-primary {
+    padding: 10px 18px;
+    font-size: 0.75rem;
+    letter-spacing: 1.5px;
+  }
+
+  .scene {
+    padding: 12px;
+  }
+}
+
+/* ── Focus visible (accessibility) ──────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--elm-cyan);
+  outline-offset: 3px;
+}
